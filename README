@@ -1,4 +1,7 @@
 X. Qian   03/09/2015
+   toy MC to practice matrix inversion to identify true hits 
+   based on uBooNE geometry
+
 
 test.C 
        test the wire number and position mapping
