@@ -110,7 +110,7 @@ void plot_eve(Int_t neve = 3){
    }
    h2->Draw("TEXT");
 
-   h2->SetTitle(Form("# of real hits: %d",nhit));
+   h2->SetTitle(Form("# of real hits: %d, # of potential hits: %d",nhit,nc));
    //h1->Reset();
    for (Int_t i=0;i!=nc;i++){
      h1->Fill(xc[i],yc[i],Int_t(vphit[i]*10)/10.);
