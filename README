@@ -1,0 +1,15 @@
+X. Qian   03/09/2015
+
+test.C 
+       test the wire number and position mapping
+
+plot.C:
+	was used to generate measure_deg.gif with some toy MC rootfiles
+
+plot_eve.C 
+	Look at the matrix inversion results vs. toy MC truth
+
+toy_mc.C 
+	 Compile: Make O=toy_mc
+	 run the toy MC to generate result.root file
+
