@@ -92,8 +92,9 @@ void plot_eve(Int_t neve = 3){
    *MB = (*AT) * (*Vy_invert) * (*A);
    
    cout << "Determinant: " << MB->Determinant() << endl;
+   MB->Draw("COLZ");
    MB->Invert();
-   //   MB->Draw("COLZ");
+   
    
    *FM = (*MB) * (*AT) * (*Vy_invert);
 
@@ -119,18 +120,18 @@ void plot_eve(Int_t neve = 3){
    h1->Draw("COLZsame");
    h1->GetZaxis()->SetRangeUser(0,vphit.Max()+1);
 
-   // TGraph *g2 = new TGraph(nc,xc,yc);
-   // g2->Draw("*same");
-   // g2->SetMarkerStyle(21);
-   // g2->SetMarkerColor(2);
+   // // TGraph *g2 = new TGraph(nc,xc,yc);
+   // // g2->Draw("*same");
+   // // g2->SetMarkerStyle(21);
+   // // g2->SetMarkerColor(2);
    
 
    
 
-   // TGraph *g1 = new TGraph(nhit,xr,yr);
-   // g1->Draw("*same");
-   // g1->SetMarkerStyle(20);
-   // g1->SetMarkerColor(1);
+   // // TGraph *g1 = new TGraph(nhit,xr,yr);
+   // // g1->Draw("*same");
+   // // g1->SetMarkerStyle(20);
+   // // g1->SetMarkerColor(1);
    
 
 
@@ -142,21 +143,21 @@ void plot_eve(Int_t neve = 3){
    // cout << endl;
    
 
-   // for (Int_t i=0;i!=nhit;i++){
-   //   cout << xr[i] << " " << yr[i] << " " << charge[i] << endl;
-   // }
-   // cout << endl;
+   // // for (Int_t i=0;i!=nhit;i++){
+   // //   cout << xr[i] << " " << yr[i] << " " << charge[i] << endl;
+   // // }
+   // // cout << endl;
    
 
 
-   // //test ... 
-   // for (Int_t i=0;i!=nu+nv+nw;i++){
-   //   cout << vwire[i] << " ";
-   // }
-   // cout << endl;
+   // // //test ... 
+   // // for (Int_t i=0;i!=nu+nv+nw;i++){
+   // //   cout << vwire[i] << " ";
+   // // }
+   // // cout << endl;
 
-   // A->Print();
-   // //test 
+   // // A->Print();
+   // // //test 
   
    
 }
