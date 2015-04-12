@@ -2,6 +2,8 @@
 #include "TMatrixD.h"
 
 void plot_eve(Int_t neve = 3){
+  gStyle->SetOptStat(0);
+
   TFile *file = new TFile("result.root");
   TTree *T = (TTree*)file->Get("T");
 
@@ -92,17 +94,49 @@ void plot_eve(Int_t neve = 3){
    *MB = (*AT) * (*Vy_invert) * (*A);
    
    cout << "Determinant: " << MB->Determinant() << endl;
+
+   TCanvas *c1 = new TCanvas("c1","c1",1200,800);
+   c1->Divide(2,2);
+   c1->cd(1);
    MB->Draw("COLZ");
+   //MB->Print();
+
+   c1->cd(3);
+   TMatrixDEigen *Eigen = new TMatrixDEigen(*MB);
+   TMatrixD EigenValue = Eigen->GetEigenValues();
+   TMatrixD *trans = new TMatrixD(nc,nc);
+   TMatrixD *transT = new TMatrixD(nc,nc);
+   
+
+   *trans = Eigen->GetEigenVectors();
+   transT->Transpose(*trans);
+   EigenValue.Draw("COLZ");
+   //EigenValue(21,21) = 0.001;
+   //EigenValue(22,22) = 0.001;
+   //does not work by changing the eigenvalue ... 
+
+   c1->cd(1);
+   trans->Draw("COLZ");
+
+   c1->cd(4);
+   trans->Draw("COLZ");
+  // trans->Print();
+
+   *MB = (*trans) *EigenValue * (*transT);
+   //MB->Print();
+   cout << "Determinant: " << MB->Determinant() << endl;
+
    MB->Invert();
    
    
+
    *FM = (*MB) * (*AT) * (*Vy_invert);
 
    // FM->Draw("COLZ");
    vphit = (*FM) * (vwire);
 
 
-
+   c1->cd(2);
    TH2F *h1 = new TH2F("h1","h1",100,-0.5,0.5,100,-0.5,0.5);
    TH2F *h2 = new TH2F("h2","h2",100,-0.5,0.5,100,-0.5,0.5);
 
@@ -120,25 +154,28 @@ void plot_eve(Int_t neve = 3){
    h1->Draw("COLZsame");
    h1->GetZaxis()->SetRangeUser(0,vphit.Max()+1);
 
-   // // TGraph *g2 = new TGraph(nc,xc,yc);
-   // // g2->Draw("*same");
-   // // g2->SetMarkerStyle(21);
-   // // g2->SetMarkerColor(2);
+   
+   c1->cd(4);
+   h1->Draw();
+   TGraph *g2 = new TGraph(nc,xc,yc);
+   g2->Draw("*same");
+   g2->SetMarkerStyle(21);
+   g2->SetMarkerColor(2);
    
 
    
 
-   // // TGraph *g1 = new TGraph(nhit,xr,yr);
-   // // g1->Draw("*same");
-   // // g1->SetMarkerStyle(20);
-   // // g1->SetMarkerColor(1);
+   TGraph *g1 = new TGraph(nhit,xr,yr);
+   g1->Draw("*same");
+   g1->SetMarkerStyle(20);
+   g1->SetMarkerColor(1);
    
 
 
-
+   // cout << nc << " " << nw + nv + nu << endl;
 
    // for (Int_t i=0;i!=nc;i++){
-   //   cout << xc[i] << " " << yc[i] << " " << vphit[i] << endl;
+   //   cout << i << " " << EigenValue(i,i) << " " << xc[i] << " " << yc[i] << " " << vphit[i] << " " << fabs((*trans)(i,55)) << endl;
    // }
    // cout << endl;
    

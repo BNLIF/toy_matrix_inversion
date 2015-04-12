@@ -224,7 +224,7 @@ main (Int_t argc, char *argv[])
 	Int_t nc_start = nc;
 
 	// old
-	//Int_t flag = 0;
+	Int_t flag = 0;
 
 	for (Int_t k1=0;k1!=3;k1++){
 	  for (Int_t k2=0;k2!=3;k2++){
@@ -249,20 +249,20 @@ main (Int_t argc, char *argv[])
 		  }
 		}
 		//old
-		//flag = 1;
+		flag = 1;
 
 		//new
-		Int_t flag = 1;
+		// Int_t flag = 1;
 
-		for (Int_t k4 = nc_start; k4!=nc;k4++){
-		  if (wcc[nc]==wcc[k4]){
-		    flag = 0;
-		  }
-		}
+		// for (Int_t k4 = nc_start; k4!=nc;k4++){
+		//   if (wcc[nc]==wcc[k4]){
+		//     flag = 0;
+		//   }
+		// }
 
-		if (flag==1){
-		  nc ++;
-		}
+		// if (flag==1){
+		//   nc ++;
+		// }
 		
 		
 	      }
@@ -271,9 +271,9 @@ main (Int_t argc, char *argv[])
 	}
 	
 	//old
-	// if (flag==1){
-	//   nc ++;
-	// }
+	if (flag==1){
+	  nc ++;
+	}
 	
       }
     }
